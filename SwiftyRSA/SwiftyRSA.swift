@@ -278,7 +278,7 @@ public class SwiftyRSA: NSObject {
         
         let all = NSRange(
             location: 0,
-            length: inputPEMString.characters.count
+            length: inputPEMString.count
         )
         
         let matches = publicKeyRegexp.matches(
@@ -289,10 +289,10 @@ public class SwiftyRSA: NSObject {
         
         for result in matches {
             let match = result.rangeAt(1)
-            let start = inputPEMString.characters.index(inputPEMString.startIndex, offsetBy: match.location)
-            let end = inputPEMString.characters.index(start, offsetBy: match.length)
+            let start = inputPEMString.index(inputPEMString.startIndex, offsetBy: match.location)
+            let end = inputPEMString.index(start, offsetBy: match.length)
             
-            let range = Range<String.Index>(start..<end)
+            let range = (start..<end)
             
             let thisKey = inputPEMString[range]
             
